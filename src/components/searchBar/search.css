@@ -1,0 +1,23 @@
+.search {
+  margin-bottom: 24px;
+}
+
+.search input,
+.search button {
+  padding: 8px 12px;
+  border: 1px solid grey;
+  font-size: 1.3rem;
+}
+
+.search input {
+  width: 300px;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+}
+
+.search button {
+  cursor: pointer;
+  background: black;
+  color: white;
+  border-radius: 0 8px 8px 0;
+}
