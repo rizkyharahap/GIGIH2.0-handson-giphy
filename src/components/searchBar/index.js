@@ -1,5 +1,5 @@
 import React from "react";
-// import "./search.css";
+import "./search.css";
 
 const SearchBar = ({ onChange, onSubmit, styled, placeholder }) => {
   return (

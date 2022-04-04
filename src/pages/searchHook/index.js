@@ -1,20 +1,24 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuery } from "../../redux/slices/searchSlice";
 import Container from "../../components/container";
 import Gif from "../../components/gif";
 import SearchBar from "../../components/searchBar";
 import { searchGiphyAPI } from "../../service/api";
 
 const SearchHook = () => {
-  const [query, setQuey] = useState("");
+  const dispatch = useDispatch();
+
+  const query = useSelector(({ search }) => search.query);
   const [gifs, setGifs] = useState({
     data: [],
     error: "",
     loading: false,
   });
 
-  // Handle
+  // Handle when input change
   const handleChangeInput = (e) => {
-    setQuey(e.target.value);
+    dispatch(setQuery(e.target.value));
   };
 
   const handleSearch = async (e) => {

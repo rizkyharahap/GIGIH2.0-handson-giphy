@@ -1,3 +1,5 @@
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 import "./App.css";
 // import Home from "./pages/home";
 // import Search from "./pages/search";
@@ -5,10 +7,12 @@ import SearchHook from "./pages/searchHook";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Search /> */}
-      <SearchHook />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        {/* <Search /> */}
+        <SearchHook />
+      </div>
+    </Provider>
   );
 }
 
