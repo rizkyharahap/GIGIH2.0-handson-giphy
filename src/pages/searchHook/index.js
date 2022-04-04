@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Container from "../../components/container";
-import Giv from "../../components/gif";
+import Gif from "../../components/gif";
+import SearchBar from "../../components/searchBar";
 import { searchGiphyAPI } from "../../service/api";
 
 const SearchHook = () => {
@@ -11,9 +12,16 @@ const SearchHook = () => {
     loading: false,
   });
 
-  const handleSearch = async () => {
+  // Handle
+  const handleChangeInput = (e) => {
+    setQuey(e.target.value);
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
     try {
-      // set loading to true
+      // set loading to
       setGifs((prev) => ({
         ...prev,
         loading: true,
@@ -46,43 +54,15 @@ const SearchHook = () => {
     }
   };
 
-  // Handle
-  const handleChangeInput = (e) => {
-    setQuey(e.target.value);
-  };
-
-  let gifsComponent;
-
-  if (gifs.loading) gifsComponent = <p>Loading...</p>;
-  else if (gifs.error)
-    gifsComponent = <p style={{ color: "red" }}>{gifs.error}</p>;
-  else
-    gifsComponent = gifs.data?.map(
-      (gif) =>
-        gif.rating === "g" && (
-          <Giv
-            key={gif.id}
-            url={gif.images.fixed_width.url}
-            webp={gif.images.fixed_width.webp}
-            title={gif.title}
-            rating={gif.rating}
-            uploadedDate={gif.uploadedDate}
-          />
-        )
-    );
-
   return (
     <Container>
       <div className="search">
-        <input
-          type="search"
-          placeholder="Search Here..."
-          onChange={handleChangeInput}
-        />
-        <button onClick={handleSearch}>Search</button>
+        <SearchBar onChange={handleChangeInput} onSubmit={handleSearch} />
       </div>
 
-      <div className="grid-view">{gifsComponent}</div>
+      <div className="grid-view">
+        <Gif {...gifs} />
+      </div>
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import "./App.css";
 // import Home from "./pages/home";
-import Search from "./pages/search";
+// import Search from "./pages/search";
 import SearchHook from "./pages/searchHook";
 
 function App() {

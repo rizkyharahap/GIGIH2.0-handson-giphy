@@ -1,31 +1,27 @@
 import React from "react";
-import "./gif.css";
+import GifItem from "./gif-item";
 
-const Gif = ({
-  title = "Title",
-  url,
-  webp,
-  rating,
-  uploadedDate,
-  ...props
-}) => {
+const Gif = ({ data = [], loading = false, error }) => {
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
   return (
-    <picture className="gif-wrapper" {...props}>
-      <source srcSet={webp} type="image/webp" />
-      <source srcSet={url} type="image/gif" />
-      <img src={url} alt={title} />
-      <span>{title}</span>
-      <br />
-      <span>Rating : {rating}</span>
-      <span>
-        Uploaded Date :{" "}
-        {new Date(uploadedDate).toLocaleString("id-ID", {
-          weekday: "long",
-          month: "long",
-          year: "numeric",
-        })}
-      </span>
-    </picture>
+    <>
+      {data?.map(
+        (gif) =>
+          gif.rating === "g" && (
+            <GifItem
+              key={gif.id}
+              url={gif.images.fixed_width.url}
+              webp={gif.images.fixed_width.webp}
+              title={gif.title}
+              rating={gif.rating}
+              uploadedDate={gif.uploadedDate}
+            />
+          )
+      )}
+    </>
   );
 };
 
