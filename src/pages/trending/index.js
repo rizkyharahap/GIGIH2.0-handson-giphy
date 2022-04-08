@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Container from "../../components/container";
 import Gif from "../../components/gif";
 import { trendingGiphyAPI } from "../../service/api";
+import { useSelector } from "react-redux";
 
 const Trending = () => {
   const { goBack } = useHistory();
