@@ -1,17 +1,39 @@
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-// import Home from "./pages/home";
-// import Search from "./pages/search";
-import SearchHook from "./pages/searchHook";
+import Navbar from "./components/navbar";
+import Home from "./pages/home";
+import Trending from "./pages/trending";
+import { store } from "./redux/store";
+
+const routes = [
+  {
+    path: "/",
+    exact: true,
+    component: Home,
+    name: "Home",
+  },
+  {
+    path: "/trending",
+    component: Trending,
+    name: "Trending",
+  },
+];
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        {/* <Search /> */}
-        <SearchHook />
-      </div>
+      <Router>
+        <Navbar routes={routes} />
+
+        <div className="App">
+          <Switch>
+            {routes.map((route) => (
+              <Route key={route.path} {...route} />
+            ))}
+          </Switch>
+        </div>
+      </Router>
     </Provider>
   );
 }

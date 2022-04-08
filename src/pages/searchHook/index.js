@@ -9,7 +9,7 @@ import { searchGiphyAPI } from "../../service/api";
 const SearchHook = () => {
   const dispatch = useDispatch();
 
-  const query = useSelector(({ search }) => search.query);
+  const { query } = useSelector(({ search }) => search);
   const [gifs, setGifs] = useState({
     data: [],
     error: "",
