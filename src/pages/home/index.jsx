@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setQuery } from "../../redux/slices/searchSlice";
-import Container from "../../components/container";
-import Gif from "../../components/gif";
-import SearchBar from "../../components/searchBar";
-import { searchGiphyAPI } from "../../service/api";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQuery } from '../../redux/slices/searchSlice';
+import Container from '../../components/container';
+import Gif from '../../components/gif';
+import SearchBar from '../../components/searchBar';
+import { searchGiphyAPI } from '../../service/api';
 
-const SearchHook = () => {
+const Home = () => {
   const dispatch = useDispatch();
 
   const { query } = useSelector(({ search }) => search);
   const [gifs, setGifs] = useState({
     data: [],
-    error: "",
+    error: '',
     loading: false,
   });
 
@@ -34,13 +34,12 @@ const SearchHook = () => {
       const gifsResponse = await searchGiphyAPI(query);
 
       // Throw error if no gifs found
-      if (!gifsResponse || gifsResponse.data.length === 0)
-        throw new Error("Gifs not found");
+      if (!gifsResponse || gifsResponse.data.length === 0) throw new Error('Gifs not found');
 
       setGifs((prev) => ({
         ...prev,
         data: gifsResponse.data,
-        error: "",
+        error: '',
       }));
     } catch (error) {
       // Set error message
@@ -71,4 +70,4 @@ const SearchHook = () => {
   );
 };
 
-export default SearchHook;
+export default Home;

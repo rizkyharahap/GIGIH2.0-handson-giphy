@@ -1,14 +1,6 @@
-import React from "react";
-import "./gif-item.css";
+import './gif-item.css';
 
-const GifItem = ({
-  title = "Title",
-  url,
-  webp,
-  rating,
-  uploadedDate,
-  ...props
-}) => {
+const GifItem = ({ title = 'Title', url, webp, rating, uploadedDate, ...props }) => {
   return (
     <picture className="gif-item-wrapper" {...props}>
       <source srcSet={webp} type="image/webp" />
@@ -18,11 +10,11 @@ const GifItem = ({
       <br />
       <span>Rating : {rating}</span>
       <span>
-        Uploaded Date :{" "}
-        {new Date(uploadedDate).toLocaleString("id-ID", {
-          weekday: "long",
-          month: "long",
-          year: "numeric",
+        Uploaded Date :{' '}
+        {new Date(uploadedDate).toLocaleString('id-ID', {
+          weekday: 'long',
+          month: 'long',
+          year: 'numeric',
         })}
       </span>
     </picture>

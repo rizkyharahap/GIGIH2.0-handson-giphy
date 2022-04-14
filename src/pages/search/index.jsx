@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import Container from "../../components/container";
-import Giv from "../../components/gif";
-import "../../components/searchBar/search.css";
-import { searchGiphyAPI } from "../../service/api";
+import React, { Component } from 'react';
+import Container from '../../components/container';
+import Giv from '../../components/gif';
+import '../../components/searchBar/search.css';
+import { searchGiphyAPI } from '../../service/api';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
+      query: '',
       gifs: [],
-      error: "",
+      error: '',
       loading: false,
     };
   }
@@ -21,12 +21,11 @@ class Search extends Component {
       const gifsResponse = await searchGiphyAPI(this.state.query);
 
       // Throw error if no gifs found
-      if (!gifsResponse || gifsResponse.data.length === 0)
-        throw new Error("Gifs not found");
+      if (!gifsResponse || gifsResponse.data.length === 0) throw new Error('Gifs not found');
 
       this.setState({
         gifs: gifsResponse.data,
-        error: "",
+        error: '',
       });
     } catch (error) {
       this.setState({
@@ -47,12 +46,11 @@ class Search extends Component {
     let gifsComponent;
 
     if (this.state.loading) gifsComponent = <p>Loading...</p>;
-    else if (this.state.error)
-      gifsComponent = <p style={{ color: "red" }}>{this.state.error}</p>;
+    else if (this.state.error) gifsComponent = <p style={{ color: 'red' }}>{this.state.error}</p>;
     else
       gifsComponent = this.state.gifs?.map(
         (gif) =>
-          gif.rating === "g" && (
+          gif.rating === 'g' && (
             <Giv
               key={gif.id}
               url={gif.images.fixed_width.url}
@@ -61,17 +59,13 @@ class Search extends Component {
               rating={gif.rating}
               uploadedDate={gif.uploadedDate}
             />
-          )
+          ),
       );
 
     return (
       <Container>
         <div className="search">
-          <input
-            type="search"
-            placeholder="Search Here..."
-            onChange={this.handleChangeInput}
-          />
+          <input type="search" placeholder="Search Here..." onChange={this.handleChangeInput} />
           <button onClick={this.handleSearch}>Search</button>
         </div>
 
