@@ -60,7 +60,11 @@ const Home = () => {
   return (
     <Container>
       <div className="search">
-        <SearchBar onChange={handleChangeInput} onSubmit={handleSearch} />
+        <SearchBar
+          onChange={handleChangeInput}
+          onSubmit={handleSearch}
+          placeholder="Search Here..."
+        />
       </div>
 
       <div className="grid-view">

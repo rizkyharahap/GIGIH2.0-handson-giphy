@@ -1,8 +1,19 @@
 import './gif-item.css';
+import { FC } from 'react';
 
-const GifItem = ({ title = 'Title', url, webp, rating, uploadedDate, ...props }) => {
+export interface GifItemProps {
+  /** The user's name */
+  title: string;
+  /** Should the name be rendered in bold */
+  url: string;
+  webp: string;
+  rating: string;
+  uploadedDate: string;
+}
+
+const GifItem: FC<GifItemProps> = ({ title = 'Title', url, webp, rating, uploadedDate }) => {
   return (
-    <picture className="gif-item-wrapper" {...props}>
+    <picture className="gif-item-wrapper">
       <source srcSet={webp} type="image/webp" />
       <source srcSet={url} type="image/gif" />
       <img src={url} alt={title} />
